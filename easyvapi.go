@@ -57,8 +57,22 @@ type Client struct {
 	ContactDetails *ContactDetailsService
 	// Invoices provides access to the /invoice endpoint for financial documents.
 	Invoices *InvoiceService
+	// InvoiceItems provides access to the /invoice-item endpoint for invoice line items.
+	InvoiceItems *InvoiceItemService
 	// Bookings provides access to the /booking endpoint for financial transactions.
 	Bookings *BookingService
+	// BookingProjects provides access to the /booking-project endpoint.
+	BookingProjects *BookingProjectService
+	// BillingAccounts provides access to the /billing-account endpoint.
+	BillingAccounts *BillingAccountService
+	// BankAccounts provides access to the /bank-account endpoint.
+	BankAccounts *BankAccountService
+	// AccountingPlans provides access to the /accounting-plan endpoint.
+	AccountingPlans *AccountingPlanService
+	// CustomTaxRates provides access to the /custom-tax-rate endpoint.
+	CustomTaxRates *CustomTaxRateService
+	// Cancellations provides access to the /cancellation endpoint.
+	Cancellations *CancellationService
 	// Events provides access to the /event endpoint for calendar events.
 	Events *EventService
 	// MemberGroups provides access to the /member-group endpoint for member categories.
@@ -143,7 +157,14 @@ func New(token string, opts ...Option) *Client {
 	c.Members = &MemberService{client: c}
 	c.ContactDetails = &ContactDetailsService{client: c}
 	c.Invoices = &InvoiceService{client: c}
+	c.InvoiceItems = &InvoiceItemService{client: c}
 	c.Bookings = &BookingService{client: c}
+	c.BookingProjects = &BookingProjectService{client: c}
+	c.BillingAccounts = &BillingAccountService{client: c}
+	c.BankAccounts = &BankAccountService{client: c}
+	c.AccountingPlans = &AccountingPlanService{client: c}
+	c.CustomTaxRates = &CustomTaxRateService{client: c}
+	c.Cancellations = &CancellationService{client: c}
 	c.Events = &EventService{client: c}
 	c.MemberGroups = &MemberGroupService{client: c}
 	return c

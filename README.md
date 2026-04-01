@@ -4,7 +4,7 @@ Ein moderner, typsicherer Go Client für die [easyVerein](https://www.easyverein
 
 ## Features
 
-- ✅ **Vollständige CRUD-Operationen** für alle Ressourcen (Members, Contacts, Invoices, Bookings, Events, Member Groups)
+- ✅ **Vollständige CRUD-Operationen** für alle Ressourcen (Members, Contacts, Invoices, Invoice Items, Bookings, Booking Projects, Billing Accounts, Bank Accounts, Accounting Plans, Custom Tax Rates, Events, Member Groups)
 - ✅ **Lazy Pagination** mit `Iterator[T]` – nur die benötigten Felder abrufen, Seiten bei Bedarf laden
 - ✅ **Automatisches Token-Refresh** – Token wird automatisch erneuert, wenn die API es signalisiert
 - ✅ **Intelligentes Rate-Limit-Handling** – automatisches Drosseln bei niedriger Rate-Limit-Verbrauch
@@ -276,7 +276,13 @@ Jeder Endpoint setzt automatisch eine sinnvolle Standard-Query, wenn keine eigen
 | **Members** | id, membershipNumber, joinDate, resignationDate, paymentAmount, paymentIntervallMonths, _isBlocked, _isApplication, _relatedMember, contactDetails{...}, memberGroups{...} |
 | **ContactDetails** | id, firstName, familyName, salutation, street, zip, city, country, privateEmail, primaryEmail, privatePhone, mobilePhone, dateOfBirth |
 | **Invoices** | id, invNumber, date, receiver, totalPrice, kind, isDraft, isTemplate |
+| **InvoiceItems** | id, title, quantity, unitPrice, taxRate, taxName, description, billingAccount, gross |
 | **Bookings** | id, amount, date, receiver, billingId |
+| **BookingProjects** | id, name, description |
+| **BillingAccounts** | id, name, accountKind, skr, description, balance, standardFormOfAccounts |
+| **BankAccounts** | id, name, iban, bic, balance, description, bankAccountOwner, sepaCreditorId, sepaScheme |
+| **AccountingPlans** | id, name, description |
+| **CustomTaxRates** | id, taxName, customTaxRate |
 | **Events** | id, name, start, end, allDay, isPublic, canceled, locationName |
 | **MemberGroups** | *Keine Query-Unterstützung (API-Limitierung)* |
 

@@ -41,7 +41,7 @@ members, err := client.Members.ListAll(ctx, opts)
 | **HTTP** | 30s timeout, `Accept: application/json` always set, proper URL encoding. |
 | **Errors** | `*APIError{StatusCode, Message, Detail}` (non-2xx), `*RateLimitError{RetryAfter}` (429). Use `errors.As()`. |
 
-## Services (6 total)
+## Services (13 total)
 
 Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Get(ctx, id, query)`, `Create`, `Update`, `Delete`
 
@@ -50,7 +50,14 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | Members | Member | Email, MembershipNumber, IsBlocked, Dates, Groups | Related nested objects: contactDetails, memberGroups |
 | ContactDetails | ContactDetails | Country, FirstName, FamilyName, IsCompany | Flat struct |
 | Invoices | Invoice | Kind, IsDraft, IsTemplate, DateRange | Financial docs |
+| InvoiceItems | InvoiceItem | RelatedInvoice, BillingAccount, Title | Invoice line items |
 | Bookings | Booking | DateRange, BillingAccount | + BulkCreate/BulkUpdate |
+| BookingProjects | BookingProject | Name | Groups bookings under a project |
+| BillingAccounts | BillingAccount | Name, AccountKind | Buchungskonten |
+| BankAccounts | BankAccount | Name | Bankkonten mit IBAN/SEPA |
+| AccountingPlans | AccountingPlan | — | Kontenplan |
+| CustomTaxRates | CustomTaxRate | TaxName | Steuersätze |
+| Cancellations | — | — | Submit only (POST /cancellation) |
 | Events | Event | DateRange, Calendar, IsPublic | Calendar events |
 | MemberGroups | MemberGroup | Name | **No query parameter support** |
 
@@ -83,7 +90,7 @@ members, err := client.Members.ListAll(ctx, &easyvapi.MemberListOptions{
 - `errors.go` - APIError, RateLimitError
 - `request.go` - HTTP internals (do/doOnce, rate-limit, token-refresh)
 - `helpers.go` - applyListOptions, fetchPage
-- `member.go`, `contact_details.go`, `invoice.go`, `booking.go`, `event.go`, `member_group.go` - Services + defaults
+- `member.go`, `contact_details.go`, `invoice.go`, `invoice_item.go`, `booking.go`, `booking_project.go`, `billing_account.go`, `bank_account.go`, `accounting_plan.go`, `custom_tax_rate.go`, `cancellation.go`, `event.go`, `member_group.go` - Services + defaults
 - `model/` - Data structs
 
 ## Adding New Endpoint
