@@ -14,9 +14,9 @@ type BookingProjectService struct {
 	client *Client
 }
 
-// defaultBookingProjectQuery requests all fields defined in model.BookingProject.
-var defaultBookingProjectQuery = NewQuery().
-	Fields("id", "name", "description")
+// defaultBookingProjectQuery is nil because the /booking-project endpoint does
+// not support field selection via the query parameter.
+var defaultBookingProjectQuery *Query = nil
 
 // BookingProjectListOptions holds all filter and pagination options for BookingProject
 // list requests.

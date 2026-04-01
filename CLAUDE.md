@@ -52,9 +52,9 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | Invoices | Invoice | Kind, IsDraft, IsTemplate, DateRange | Financial docs |
 | InvoiceItems | InvoiceItem | RelatedInvoice, BillingAccount, Title | Invoice line items |
 | Bookings | Booking | DateRange, BillingAccount | + BulkCreate/BulkUpdate |
-| BookingProjects | BookingProject | Name | Groups bookings under a project |
-| BillingAccounts | BillingAccount | Name, AccountKind | Buchungskonten |
-| BankAccounts | BankAccount | Name | Bankkonten mit IBAN/SEPA |
+| BookingProjects | BookingProject | Name | **No query parameter support** |
+| BillingAccounts | BillingAccount | Name, AccountKind | **No query parameter support** |
+| BankAccounts | BankAccount | Name | **No query parameter support** |
 | AccountingPlans | AccountingPlan | — | Kontenplan |
 | CustomTaxRates | CustomTaxRate | TaxName | Steuersätze |
 | Cancellations | — | — | Submit only (POST /cancellation) |

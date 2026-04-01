@@ -278,9 +278,9 @@ Jeder Endpoint setzt automatisch eine sinnvolle Standard-Query, wenn keine eigen
 | **Invoices** | id, invNumber, date, receiver, totalPrice, kind, isDraft, isTemplate |
 | **InvoiceItems** | id, title, quantity, unitPrice, taxRate, taxName, description, billingAccount, gross |
 | **Bookings** | id, amount, date, receiver, billingId |
-| **BookingProjects** | id, name, description |
-| **BillingAccounts** | id, name, accountKind, skr, description, balance, standardFormOfAccounts |
-| **BankAccounts** | id, name, iban, bic, balance, description, bankAccountOwner, sepaCreditorId, sepaScheme |
+| **BookingProjects** | *Keine Query-Unterstützung (API-Limitierung)* |
+| **BillingAccounts** | *Keine Query-Unterstützung (API-Limitierung)* |
+| **BankAccounts** | *Keine Query-Unterstützung (API-Limitierung)* |
 | **AccountingPlans** | id, name, description |
 | **CustomTaxRates** | id, taxName, customTaxRate |
 | **Events** | id, name, start, end, allDay, isPublic, canceled, locationName |

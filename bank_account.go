@@ -14,10 +14,9 @@ type BankAccountService struct {
 	client *Client
 }
 
-// defaultBankAccountQuery requests all fields defined in model.BankAccount.
-var defaultBankAccountQuery = NewQuery().
-	Fields("id", "name", "iban", "bic", "balance", "description", "bankAccountOwner",
-		"sepaCreditorId", "sepaScheme")
+// defaultBankAccountQuery is nil because the /bank-account endpoint does
+// not support field selection via the query parameter.
+var defaultBankAccountQuery *Query = nil
 
 // BankAccountListOptions holds all filter and pagination options for BankAccount
 // list requests.

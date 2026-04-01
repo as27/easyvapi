@@ -14,9 +14,9 @@ type BillingAccountService struct {
 	client *Client
 }
 
-// defaultBillingAccountQuery requests all fields defined in model.BillingAccount.
-var defaultBillingAccountQuery = NewQuery().
-	Fields("id", "name", "accountKind", "skr", "description", "balance", "standardFormOfAccounts")
+// defaultBillingAccountQuery is nil because the /billing-account endpoint does
+// not support field selection via the query parameter.
+var defaultBillingAccountQuery *Query = nil
 
 // BillingAccountListOptions holds all filter and pagination options for BillingAccount
 // list requests.
