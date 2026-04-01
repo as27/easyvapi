@@ -15,9 +15,9 @@ type ContactDetailsLogService struct {
 	client *Client
 }
 
-// defaultContactDetailsLogQuery requests all fields defined in model.ContactDetailsLog.
-var defaultContactDetailsLogQuery = NewQuery().
-	Fields("id", "contactDetails", "title", "message", "date")
+// defaultContactDetailsLogQuery is nil because the /contact-details-log endpoint
+// does not support field selection via the query parameter.
+var defaultContactDetailsLogQuery *Query = nil
 
 // ContactDetailsLogListOptions holds all filter and pagination options for
 // ContactDetailsLog list requests.
