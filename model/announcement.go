@@ -12,8 +12,8 @@ type Announcement struct {
 	Content string `json:"content"`
 	// ShowBanner indicates whether the announcement is displayed as a banner.
 	ShowBanner bool `json:"showBanner"`
-	// Platform specifies which platform shows the announcement (e.g. "admin", "member").
-	Platform string `json:"platform"`
+	// Platform specifies which platform shows the announcement (integer code).
+	Platform int `json:"platform"`
 	// StartDate is the date from which the announcement is visible (YYYY-MM-DD).
 	StartDate string `json:"startDate"`
 	// EndDate is the date until which the announcement is visible (YYYY-MM-DD).
@@ -29,8 +29,8 @@ type AnnouncementCreate struct {
 	Content string `json:"content,omitempty"`
 	// ShowBanner indicates whether to display as a banner.
 	ShowBanner bool `json:"showBanner,omitempty"`
-	// Platform specifies the target platform.
-	Platform string `json:"platform,omitempty"`
+	// Platform specifies the target platform (integer code).
+	Platform int `json:"platform,omitempty"`
 	// StartDate is the visibility start date (YYYY-MM-DD).
 	StartDate string `json:"startDate,omitempty"`
 	// EndDate is the visibility end date (YYYY-MM-DD).

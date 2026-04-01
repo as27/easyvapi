@@ -23,8 +23,8 @@ var defaultAnnouncementQuery *Query = nil
 // Announcement list requests.
 type AnnouncementListOptions struct {
 	ListOptions
-	// Platform filters by target platform (e.g. "admin", "member").
-	Platform string
+	// Platform filters by target platform (integer code).
+	Platform int
 	// ShowBanner when non-nil filters by banner display status.
 	ShowBanner *bool
 }
@@ -37,8 +37,8 @@ func announcementListParams(opts *AnnouncementListOptions) url.Values {
 		return params
 	}
 	applyListOptions(params, opts.ListOptions, defaultAnnouncementQuery)
-	if opts.Platform != "" {
-		params.Set("platform", opts.Platform)
+	if opts.Platform != 0 {
+		params.Set("platform", strconv.Itoa(opts.Platform))
 	}
 	if opts.ShowBanner != nil {
 		params.Set("showBanner", strconv.FormatBool(*opts.ShowBanner))

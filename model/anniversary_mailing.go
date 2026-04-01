@@ -12,8 +12,8 @@ type AnniversaryMailing struct {
 	Subject string `json:"subject"`
 	// Content is the email body (may contain HTML and placeholders).
 	Content string `json:"content"`
-	// AnniversaryYears is the number of years that triggers the mailing.
-	AnniversaryYears int `json:"anniversaryYears"`
+	// AnniversaryYears holds the years that trigger the mailing (e.g. [1, 5, 10]).
+	AnniversaryYears []int `json:"anniversaryYears"`
 	// AnniversaryKind classifies the anniversary type (e.g. membership, birthday).
 	AnniversaryKind int `json:"anniversaryKind"`
 }
@@ -27,8 +27,8 @@ type AnniversaryMailingCreate struct {
 	Subject string `json:"subject,omitempty"`
 	// Content is the email body.
 	Content string `json:"content,omitempty"`
-	// AnniversaryYears is the number of years that triggers the mailing.
-	AnniversaryYears int `json:"anniversaryYears,omitempty"`
+	// AnniversaryYears holds the years that trigger the mailing (e.g. [1, 5, 10]).
+	AnniversaryYears []int `json:"anniversaryYears,omitempty"`
 	// AnniversaryKind classifies the anniversary type.
 	AnniversaryKind int `json:"anniversaryKind,omitempty"`
 }
