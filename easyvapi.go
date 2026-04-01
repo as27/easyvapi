@@ -73,6 +73,14 @@ type Client struct {
 	CustomTaxRates *CustomTaxRateService
 	// Cancellations provides access to the /cancellation endpoint.
 	Cancellations *CancellationService
+	// Locations provides access to the /location endpoint for event venues.
+	Locations *LocationService
+	// Calendars provides access to the /calendar endpoint.
+	Calendars *CalendarService
+	// Announcements provides access to the /announcement endpoint.
+	Announcements *AnnouncementService
+	// AnniversaryMailings provides access to the /anniversary-mailing endpoint.
+	AnniversaryMailings *AnniversaryMailingService
 	// CustomFields provides access to the /custom-field endpoint.
 	CustomFields *CustomFieldService
 	// CustomFieldCollections provides access to the /custom-field-collection endpoint.
@@ -183,6 +191,10 @@ func New(token string, opts ...Option) *Client {
 	c.AccountingPlans = &AccountingPlanService{client: c}
 	c.CustomTaxRates = &CustomTaxRateService{client: c}
 	c.Cancellations = &CancellationService{client: c}
+	c.Locations = &LocationService{client: c}
+	c.Calendars = &CalendarService{client: c}
+	c.Announcements = &AnnouncementService{client: c}
+	c.AnniversaryMailings = &AnniversaryMailingService{client: c}
 	c.CustomFields = &CustomFieldService{client: c}
 	c.CustomFieldCollections = &CustomFieldCollectionService{client: c}
 	c.CustomFilters = &CustomFilterService{client: c}

@@ -41,7 +41,7 @@ members, err := client.Members.ListAll(ctx, opts)
 | **HTTP** | 30s timeout, `Accept: application/json` always set, proper URL encoding. |
 | **Errors** | `*APIError{StatusCode, Message, Detail}` (non-2xx), `*RateLimitError{RetryAfter}` (429). Use `errors.As()`. |
 
-## Services (22 total)
+## Services (26 total)
 
 Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Get(ctx, id, query)`, `Create`, `Update`, `Delete`
 
@@ -58,6 +58,10 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | AccountingPlans | AccountingPlan | — | Kontenplan |
 | CustomTaxRates | CustomTaxRate | TaxName | Steuersätze |
 | Cancellations | — | — | Submit only (POST /cancellation) |
+| Locations | Location | Name, Country, Zip | **No query parameter support** |
+| Calendars | Calendar | Name | **No query parameter support** |
+| Announcements | Announcement | Platform, ShowBanner | **No query parameter support** |
+| AnniversaryMailings | AnniversaryMailing | — | **No query parameter support** |
 | CustomFields | CustomField | Label, FieldKind, FieldCollection, ShowInMemberArea | **No query parameter support** |
 | CustomFieldCollections | CustomFieldCollection | — | Gruppen eigener Felder |
 | CustomFilters | CustomFilter | Name, Model | **No query parameter support** |
@@ -67,7 +71,7 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | FormerMemberData | FormerMemberData | — | Read-only; **No query parameter support** |
 | ChairmanLevels | ChairmanLevel | — | **No query parameter support** |
 | ChairmanNotes | ChairmanNote | DateGte, DateLte | Interne Vorstandsnotizen |
-| Events | Event | DateRange, Calendar, IsPublic | Calendar events |
+| Events | Event | DateRange, Calendar, IsPublic | + Copy, GenerateInvoices, InviteGroups, ListParticipations, CreateParticipation, UpdateParticipation, DeleteParticipation |
 | MemberGroups | MemberGroup | Name | **No query parameter support** |
 
 ## Code Patterns

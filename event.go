@@ -153,3 +153,129 @@ func (s *EventService) Delete(ctx context.Context, id int) error {
 	resp.Body.Close()
 	return nil
 }
+
+// Copy creates a copy of the event with the given ID and returns the new event.
+//
+// Example:
+//
+//	copied, err := client.Events.Copy(ctx, 123)
+func (s *EventService) Copy(ctx context.Context, id int) (*model.Event, error) {
+	resp, err := s.client.do(ctx, "GET", s.client.buildURL(fmt.Sprintf("/event/%d/copy", id), nil), nil)
+	if err != nil {
+		return nil, err
+	}
+	var e model.Event
+	if err := s.client.decodeJSON(resp, &e); err != nil {
+		return nil, err
+	}
+	return &e, nil
+}
+
+// GenerateInvoices triggers invoice generation for all participants of the
+// event with the given ID.
+func (s *EventService) GenerateInvoices(ctx context.Context, id int) error {
+	resp, err := s.client.do(ctx, "POST", s.client.buildURL(fmt.Sprintf("/event/%d/generate-invoices", id), nil), nil)
+	if err != nil {
+		return err
+	}
+	resp.Body.Close()
+	return nil
+}
+
+// InviteGroups invites a contact-details group or member group to the event.
+//
+// Example:
+//
+//	err := client.Events.InviteGroups(ctx, 123, model.InviteGroupsRequest{MemberGroupID: 42})
+func (s *EventService) InviteGroups(ctx context.Context, id int, req model.InviteGroupsRequest) error {
+	resp, err := s.client.do(ctx, "POST", s.client.buildURL(fmt.Sprintf("/event/%d/invite-groups", id), nil), req)
+	if err != nil {
+		return err
+	}
+	resp.Body.Close()
+	return nil
+}
+
+// ListParticipations returns a lazy Iterator over all participation records for
+// the event with the given ID.
+//
+// Example:
+//
+//	iter := client.Events.ListParticipations(ctx, 123, nil)
+//	for iter.Next() {
+//		p := iter.Value()
+//		fmt.Printf("Participant %d, state %d\n", p.ParticipationAddress, p.State)
+//	}
+func (s *EventService) ListParticipations(ctx context.Context, eventID int, opts *ListOptions) *Iterator[model.Participation] {
+	params := url.Values{}
+	if opts != nil {
+		applyListOptions(params, *opts, nil)
+	} else {
+		applyListOptions(params, ListOptions{}, nil)
+	}
+	startURL := s.client.buildURL(fmt.Sprintf("/event/%d/participation", eventID), params)
+	return newIterator(startURL, func(pageURL string) ([]model.Participation, *string, error) {
+		return fetchPage[model.Participation](s.client, ctx, pageURL)
+	})
+}
+
+// ListAllParticipations fetches all participation records for the event and
+// returns them as a slice.
+func (s *EventService) ListAllParticipations(ctx context.Context, eventID int, opts *ListOptions) ([]model.Participation, error) {
+	var all []model.Participation
+	iter := s.ListParticipations(ctx, eventID, opts)
+	for iter.Next() {
+		all = append(all, iter.Value())
+	}
+	return all, iter.Err()
+}
+
+// GetParticipation retrieves a single participation record by event ID and
+// participation ID.
+func (s *EventService) GetParticipation(ctx context.Context, eventID, participationID int) (*model.Participation, error) {
+	resp, err := s.client.get(ctx, fmt.Sprintf("/event/%d/participation/%d", eventID, participationID), url.Values{})
+	if err != nil {
+		return nil, err
+	}
+	var p model.Participation
+	if err := s.client.decodeJSON(resp, &p); err != nil {
+		return nil, err
+	}
+	return &p, nil
+}
+
+// CreateParticipation creates a new participation record for the given event.
+func (s *EventService) CreateParticipation(ctx context.Context, eventID int, p model.ParticipationCreate) (*model.Participation, error) {
+	resp, err := s.client.do(ctx, "POST", s.client.buildURL(fmt.Sprintf("/event/%d/participation", eventID), nil), p)
+	if err != nil {
+		return nil, err
+	}
+	var created model.Participation
+	if err := s.client.decodeJSON(resp, &created); err != nil {
+		return nil, err
+	}
+	return &created, nil
+}
+
+// UpdateParticipation applies a partial update (PATCH) to a participation record.
+func (s *EventService) UpdateParticipation(ctx context.Context, eventID, participationID int, p model.ParticipationCreate) (*model.Participation, error) {
+	resp, err := s.client.do(ctx, "PATCH", s.client.buildURL(fmt.Sprintf("/event/%d/participation/%d", eventID, participationID), nil), p)
+	if err != nil {
+		return nil, err
+	}
+	var updated model.Participation
+	if err := s.client.decodeJSON(resp, &updated); err != nil {
+		return nil, err
+	}
+	return &updated, nil
+}
+
+// DeleteParticipation removes a participation record from the given event.
+func (s *EventService) DeleteParticipation(ctx context.Context, eventID, participationID int) error {
+	resp, err := s.client.do(ctx, "DELETE", s.client.buildURL(fmt.Sprintf("/event/%d/participation/%d", eventID, participationID), nil), nil)
+	if err != nil {
+		return err
+	}
+	resp.Body.Close()
+	return nil
+}
