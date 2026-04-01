@@ -73,6 +73,14 @@ type Client struct {
 	CustomTaxRates *CustomTaxRateService
 	// Cancellations provides access to the /cancellation endpoint.
 	Cancellations *CancellationService
+	// CustomFields provides access to the /custom-field endpoint.
+	CustomFields *CustomFieldService
+	// CustomFieldCollections provides access to the /custom-field-collection endpoint.
+	CustomFieldCollections *CustomFieldCollectionService
+	// CustomFilters provides access to the /custom-filter endpoint.
+	CustomFilters *CustomFilterService
+	// DocumentTemplates provides access to the /document-template endpoint.
+	DocumentTemplates *DocumentTemplateService
 	// ContactDetailsGroups provides access to the /contact-details-group endpoint.
 	ContactDetailsGroups *ContactDetailsGroupService
 	// ContactDetailsLogs provides access to the /contact-details-log endpoint.
@@ -175,6 +183,10 @@ func New(token string, opts ...Option) *Client {
 	c.AccountingPlans = &AccountingPlanService{client: c}
 	c.CustomTaxRates = &CustomTaxRateService{client: c}
 	c.Cancellations = &CancellationService{client: c}
+	c.CustomFields = &CustomFieldService{client: c}
+	c.CustomFieldCollections = &CustomFieldCollectionService{client: c}
+	c.CustomFilters = &CustomFilterService{client: c}
+	c.DocumentTemplates = &DocumentTemplateService{client: c}
 	c.ContactDetailsGroups = &ContactDetailsGroupService{client: c}
 	c.ContactDetailsLogs = &ContactDetailsLogService{client: c}
 	c.FormerMemberData = &FormerMemberDataService{client: c}

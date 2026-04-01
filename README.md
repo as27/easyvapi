@@ -4,7 +4,7 @@ Ein moderner, typsicherer Go Client für die [easyVerein](https://www.easyverein
 
 ## Features
 
-- ✅ **Vollständige CRUD-Operationen** für alle Ressourcen (Members, Contacts, Contact Groups, Contact Logs, Invoices, Invoice Items, Bookings, Booking Projects, Billing Accounts, Bank Accounts, Accounting Plans, Custom Tax Rates, Chairman Levels, Chairman Notes, Former Member Data, Events, Member Groups)
+- ✅ **Vollständige CRUD-Operationen** für alle Ressourcen (Members, Contacts, Contact Groups, Contact Logs, Invoices, Invoice Items, Bookings, Booking Projects, Billing Accounts, Bank Accounts, Accounting Plans, Custom Tax Rates, Custom Fields, Custom Field Collections, Custom Filters, Document Templates, Chairman Levels, Chairman Notes, Former Member Data, Events, Member Groups)
 - ✅ **Lazy Pagination** mit `Iterator[T]` – nur die benötigten Felder abrufen, Seiten bei Bedarf laden
 - ✅ **Automatisches Token-Refresh** – Token wird automatisch erneuert, wenn die API es signalisiert
 - ✅ **Intelligentes Rate-Limit-Handling** – automatisches Drosseln bei niedriger Rate-Limit-Verbrauch
@@ -288,6 +288,10 @@ Jeder Endpoint setzt automatisch eine sinnvolle Standard-Query, wenn keine eigen
 | **FormerMemberData** | *Keine Query-Unterstützung (API-Limitierung); read-only* |
 | **ChairmanLevels** | *Keine Query-Unterstützung (API-Limitierung)* |
 | **ChairmanNotes** | id, text, date, _deleteAfterDate |
+| **CustomFields** | id, label, fieldKind, orderSequence, showInMemberArea, fieldCollection, maxSelections |
+| **CustomFieldCollections** | id, name, orderSequence, position |
+| **CustomFilters** | *Keine Query-Unterstützung (API-Limitierung)* |
+| **DocumentTemplates** | id, title, documentKind, signatureKind *(content ausgenommen — via Get abrufbar)* |
 | **Events** | id, name, start, end, allDay, isPublic, canceled, locationName |
 | **MemberGroups** | *Keine Query-Unterstützung (API-Limitierung)* |
 
