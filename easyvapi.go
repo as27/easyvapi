@@ -73,6 +73,16 @@ type Client struct {
 	CustomTaxRates *CustomTaxRateService
 	// Cancellations provides access to the /cancellation endpoint.
 	Cancellations *CancellationService
+	// ContactDetailsGroups provides access to the /contact-details-group endpoint.
+	ContactDetailsGroups *ContactDetailsGroupService
+	// ContactDetailsLogs provides access to the /contact-details-log endpoint.
+	ContactDetailsLogs *ContactDetailsLogService
+	// FormerMemberData provides read-only access to the /former-member-data endpoint.
+	FormerMemberData *FormerMemberDataService
+	// ChairmanLevels provides access to the /chairman-level endpoint.
+	ChairmanLevels *ChairmanLevelService
+	// ChairmanNotes provides access to the /chairman-note endpoint.
+	ChairmanNotes *ChairmanNoteService
 	// Events provides access to the /event endpoint for calendar events.
 	Events *EventService
 	// MemberGroups provides access to the /member-group endpoint for member categories.
@@ -165,6 +175,11 @@ func New(token string, opts ...Option) *Client {
 	c.AccountingPlans = &AccountingPlanService{client: c}
 	c.CustomTaxRates = &CustomTaxRateService{client: c}
 	c.Cancellations = &CancellationService{client: c}
+	c.ContactDetailsGroups = &ContactDetailsGroupService{client: c}
+	c.ContactDetailsLogs = &ContactDetailsLogService{client: c}
+	c.FormerMemberData = &FormerMemberDataService{client: c}
+	c.ChairmanLevels = &ChairmanLevelService{client: c}
+	c.ChairmanNotes = &ChairmanNoteService{client: c}
 	c.Events = &EventService{client: c}
 	c.MemberGroups = &MemberGroupService{client: c}
 	return c

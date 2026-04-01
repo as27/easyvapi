@@ -41,7 +41,7 @@ members, err := client.Members.ListAll(ctx, opts)
 | **HTTP** | 30s timeout, `Accept: application/json` always set, proper URL encoding. |
 | **Errors** | `*APIError{StatusCode, Message, Detail}` (non-2xx), `*RateLimitError{RetryAfter}` (429). Use `errors.As()`. |
 
-## Services (13 total)
+## Services (18 total)
 
 Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Get(ctx, id, query)`, `Create`, `Update`, `Delete`
 
@@ -58,6 +58,11 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | AccountingPlans | AccountingPlan | — | Kontenplan |
 | CustomTaxRates | CustomTaxRate | TaxName | Steuersätze |
 | Cancellations | — | — | Submit only (POST /cancellation) |
+| ContactDetailsGroups | ContactDetailsGroup | Name | **No query parameter support** |
+| ContactDetailsLogs | ContactDetailsLog | ContactDetails (ID) | Log entries per contact |
+| FormerMemberData | FormerMemberData | — | Read-only; **No query parameter support** |
+| ChairmanLevels | ChairmanLevel | — | **No query parameter support** |
+| ChairmanNotes | ChairmanNote | DateGte, DateLte | Interne Vorstandsnotizen |
 | Events | Event | DateRange, Calendar, IsPublic | Calendar events |
 | MemberGroups | MemberGroup | Name | **No query parameter support** |
 
@@ -90,7 +95,7 @@ members, err := client.Members.ListAll(ctx, &easyvapi.MemberListOptions{
 - `errors.go` - APIError, RateLimitError
 - `request.go` - HTTP internals (do/doOnce, rate-limit, token-refresh)
 - `helpers.go` - applyListOptions, fetchPage
-- `member.go`, `contact_details.go`, `invoice.go`, `invoice_item.go`, `booking.go`, `booking_project.go`, `billing_account.go`, `bank_account.go`, `accounting_plan.go`, `custom_tax_rate.go`, `cancellation.go`, `event.go`, `member_group.go` - Services + defaults
+- `member.go`, `contact_details.go`, `contact_details_group.go`, `contact_details_log.go`, `invoice.go`, `invoice_item.go`, `booking.go`, `booking_project.go`, `billing_account.go`, `bank_account.go`, `accounting_plan.go`, `custom_tax_rate.go`, `cancellation.go`, `former_member_data.go`, `chairman_level.go`, `chairman_note.go`, `event.go`, `member_group.go` - Services + defaults
 - `model/` - Data structs
 
 ## Adding New Endpoint
