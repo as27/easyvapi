@@ -1,5 +1,43 @@
 package model
 
+import (
+	"encoding/json"
+	"fmt"
+	"path"
+	"strconv"
+)
+
+// urlOrInt unmarshals a JSON value that is either null, a plain integer, or a
+// URL string whose last path segment is the integer ID (e.g.
+// "https://…/custom-field-collection/42"). The extracted integer is stored in
+// Value; zero means absent/null.
+type urlOrInt int
+
+func (u *urlOrInt) UnmarshalJSON(data []byte) error {
+	// null → 0
+	if string(data) == "null" {
+		*u = 0
+		return nil
+	}
+	// plain integer
+	var n int
+	if err := json.Unmarshal(data, &n); err == nil {
+		*u = urlOrInt(n)
+		return nil
+	}
+	// URL string: extract last path segment as ID
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return fmt.Errorf("urlOrInt: %w", err)
+	}
+	id, err := strconv.Atoi(path.Base(s))
+	if err != nil {
+		return fmt.Errorf("urlOrInt: cannot parse ID from %q: %w", s, err)
+	}
+	*u = urlOrInt(id)
+	return nil
+}
+
 // CustomField represents a custom field definition in easyVerein
 // (Benutzerdefiniertes Feld). Custom fields extend member, contact, event
 // or inventory records with organisation-specific attributes.
@@ -18,9 +56,10 @@ type CustomField struct {
 	// ShowInMemberArea indicates whether the field is visible in the member area
 	// (API field: "member_show").
 	ShowInMemberArea bool `json:"member_show"`
-	// FieldCollection is the ID of the collection this field belongs to
+	// FieldCollection is the ID of the collection this field belongs to. The API
+	// returns this as a URL string or null; the ID is extracted automatically.
 	// (API field: "collection").
-	FieldCollection int `json:"collection"`
+	FieldCollection urlOrInt `json:"collection"`
 	// Description is an optional free-text description.
 	Description string `json:"description"`
 	// Placeholder is the generated placeholder variable for use in templates.
