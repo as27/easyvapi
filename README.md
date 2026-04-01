@@ -288,10 +288,10 @@ Jeder Endpoint setzt automatisch eine sinnvolle Standard-Query, wenn keine eigen
 | **FormerMemberData** | *Keine Query-Unterstützung (API-Limitierung); read-only* |
 | **ChairmanLevels** | *Keine Query-Unterstützung (API-Limitierung)* |
 | **ChairmanNotes** | id, text, date, _deleteAfterDate |
-| **CustomFields** | id, label, fieldKind, orderSequence, showInMemberArea, fieldCollection, maxSelections |
+| **CustomFields** | *Keine Query-Unterstützung (API-Limitierung)* |
 | **CustomFieldCollections** | id, name, orderSequence, position |
 | **CustomFilters** | *Keine Query-Unterstützung (API-Limitierung)* |
-| **DocumentTemplates** | id, title, documentKind, signatureKind *(content ausgenommen — via Get abrufbar)* |
+| **DocumentTemplates** | *Keine Query-Unterstützung (API-Limitierung)* |
 | **Events** | id, name, start, end, allDay, isPublic, canceled, locationName |
 | **MemberGroups** | *Keine Query-Unterstützung (API-Limitierung)* |
 

@@ -15,10 +15,9 @@ type CustomFieldService struct {
 	client *Client
 }
 
-// defaultCustomFieldQuery requests all fields defined in model.CustomField.
-var defaultCustomFieldQuery = NewQuery().
-	Fields("id", "label", "fieldKind", "orderSequence", "showInMemberArea",
-		"fieldCollection", "maxSelections")
+// defaultCustomFieldQuery is nil because the /custom-field endpoint does
+// not support field selection via the query parameter.
+var defaultCustomFieldQuery *Query = nil
 
 // CustomFieldListOptions holds all filter and pagination options for CustomField
 // list requests.

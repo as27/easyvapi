@@ -58,10 +58,10 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | AccountingPlans | AccountingPlan | — | Kontenplan |
 | CustomTaxRates | CustomTaxRate | TaxName | Steuersätze |
 | Cancellations | — | — | Submit only (POST /cancellation) |
-| CustomFields | CustomField | Label, FieldKind, FieldCollection, ShowInMemberArea | Eigene Felder |
+| CustomFields | CustomField | Label, FieldKind, FieldCollection, ShowInMemberArea | **No query parameter support** |
 | CustomFieldCollections | CustomFieldCollection | — | Gruppen eigener Felder |
 | CustomFilters | CustomFilter | Name, Model | **No query parameter support** |
-| DocumentTemplates | DocumentTemplate | Title, DocumentKind | `content` ausgenommen aus Default-Query |
+| DocumentTemplates | DocumentTemplate | Title, DocumentKind | **No query parameter support** |
 | ContactDetailsGroups | ContactDetailsGroup | Name | **No query parameter support** |
 | ContactDetailsLogs | ContactDetailsLog | ContactDetails (ID) | Log entries per contact |
 | FormerMemberData | FormerMemberData | — | Read-only; **No query parameter support** |

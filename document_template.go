@@ -15,9 +15,9 @@ type DocumentTemplateService struct {
 	client *Client
 }
 
-// defaultDocumentTemplateQuery requests all fields defined in model.DocumentTemplate.
-var defaultDocumentTemplateQuery = NewQuery().
-	Fields("id", "title", "documentKind", "signatureKind")
+// defaultDocumentTemplateQuery is nil because the /document-template endpoint
+// does not support field selection via the query parameter.
+var defaultDocumentTemplateQuery *Query = nil
 
 // DocumentTemplateListOptions holds all filter and pagination options for
 // DocumentTemplate list requests.
