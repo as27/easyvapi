@@ -73,6 +73,18 @@ type Client struct {
 	CustomTaxRates *CustomTaxRateService
 	// Cancellations provides access to the /cancellation endpoint.
 	Cancellations *CancellationService
+	// ApplicationForms provides access to the /application-form endpoint.
+	ApplicationForms *ApplicationFormService
+	// ApplicationFormElements provides access to the /application-form-element endpoint.
+	ApplicationFormElements *ApplicationFormElementService
+	// InventoryObjects provides access to the /inventory-object endpoint.
+	InventoryObjects *InventoryObjectService
+	// InventoryObjectGroups provides access to the /inventory-object-group endpoint.
+	InventoryObjectGroups *InventoryObjectGroupService
+	// Lendings provides access to the /lending endpoint.
+	Lendings *LendingService
+	// ArticleObjects provides access to the /article-object endpoint.
+	ArticleObjects *ArticleObjectService
 	// Locations provides access to the /location endpoint for event venues.
 	Locations *LocationService
 	// Calendars provides access to the /calendar endpoint.
@@ -191,6 +203,12 @@ func New(token string, opts ...Option) *Client {
 	c.AccountingPlans = &AccountingPlanService{client: c}
 	c.CustomTaxRates = &CustomTaxRateService{client: c}
 	c.Cancellations = &CancellationService{client: c}
+	c.ApplicationForms = &ApplicationFormService{client: c}
+	c.ApplicationFormElements = &ApplicationFormElementService{client: c}
+	c.InventoryObjects = &InventoryObjectService{client: c}
+	c.InventoryObjectGroups = &InventoryObjectGroupService{client: c}
+	c.Lendings = &LendingService{client: c}
+	c.ArticleObjects = &ArticleObjectService{client: c}
 	c.Locations = &LocationService{client: c}
 	c.Calendars = &CalendarService{client: c}
 	c.Announcements = &AnnouncementService{client: c}

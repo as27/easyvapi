@@ -41,7 +41,7 @@ members, err := client.Members.ListAll(ctx, opts)
 | **HTTP** | 30s timeout, `Accept: application/json` always set, proper URL encoding. |
 | **Errors** | `*APIError{StatusCode, Message, Detail}` (non-2xx), `*RateLimitError{RetryAfter}` (429). Use `errors.As()`. |
 
-## Services (26 total)
+## Services (32 total)
 
 Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Get(ctx, id, query)`, `Create`, `Update`, `Delete`
 
@@ -58,6 +58,12 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | AccountingPlans | AccountingPlan | — | Kontenplan |
 | CustomTaxRates | CustomTaxRate | TaxName | Steuersätze |
 | Cancellations | — | — | Submit only (POST /cancellation) |
+| ApplicationForms | ApplicationForm | Title, Public, Language, FormularKind | **No query parameter support** |
+| ApplicationFormElements | ApplicationFormElement | ApplicationForm, Kind, Required | **No query parameter support**; + BulkCreate/BulkUpdate |
+| InventoryObjects | InventoryObject | Name, Identifier, LendingAvailable | **No query parameter support** |
+| InventoryObjectGroups | InventoryObjectGroup | Name | **No query parameter support** |
+| Lendings | Lending | State, InventoryObject, LendingPerson | **No query parameter support**; + BulkCreate/BulkUpdate |
+| ArticleObjects | ArticleObject | Name, Kind | **No query parameter support** |
 | Locations | Location | Name, Country, Zip | **No query parameter support** |
 | Calendars | Calendar | Name | **No query parameter support** |
 | Announcements | Announcement | Platform, ShowBanner | **No query parameter support** |
