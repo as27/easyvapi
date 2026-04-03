@@ -4,7 +4,7 @@ Ein moderner, typsicherer Go Client für die [easyVerein](https://www.easyverein
 
 ## Features
 
-- ✅ **Vollständige CRUD-Operationen** für alle Ressourcen (Members, Contacts, Contact Groups, Contact Logs, Invoices, Invoice Items, Bookings, Booking Projects, Billing Accounts, Bank Accounts, Accounting Plans, Custom Tax Rates, Custom Fields, Custom Field Collections, Custom Filters, Document Templates, Chairman Levels, Chairman Notes, Former Member Data, Events, Member Groups)
+- ✅ **Vollständige CRUD-Operationen** für alle Ressourcen (Members, Contacts, Contact Groups, Contact Logs, Invoices, Invoice Items, Bookings, Booking Projects, Billing Accounts, Bank Accounts, Accounting Plans, Custom Tax Rates, Custom Fields, Custom Field Collections, Custom Filters, Document Templates, Chairman Levels, Chairman Notes, Former Member Data, Events, Member Groups, Locations, Calendars, Announcements, Anniversary Mailings, Application Forms, Application Form Elements, Inventory Objects, Inventory Object Groups, Lendings, Article Objects, Organization, File System Paths, Wastebasket, Chat Settings, Forums, DOSB Sports, LSB Sports)
 - ✅ **Lazy Pagination** mit `Iterator[T]` – nur die benötigten Felder abrufen, Seiten bei Bedarf laden
 - ✅ **Automatisches Token-Refresh** – Token wird automatisch erneuert, wenn die API es signalisiert
 - ✅ **Intelligentes Rate-Limit-Handling** – automatisches Drosseln bei niedriger Rate-Limit-Verbrauch
@@ -294,6 +294,13 @@ Jeder Endpoint setzt automatisch eine sinnvolle Standard-Query, wenn keine eigen
 | **DocumentTemplates** | *Keine Query-Unterstützung (API-Limitierung)* |
 | **Events** | id, name, start, end, allDay, isPublic, canceled, locationName |
 | **MemberGroups** | *Keine Query-Unterstützung (API-Limitierung)* |
+| **Organization** | *Singleton: nur Get und Update* |
+| **FileSystemPaths** | *Keine Query-Unterstützung (API-Limitierung)* |
+| **Wastebasket** | *Keine Query-Unterstützung (API-Limitierung); kein Create/Update/Delete* |
+| **ChatSettings** | *Singleton: nur Get und Update* |
+| **Forums** | *Keine Query-Unterstützung (API-Limitierung)* |
+| **DosbSports** | *Keine Query-Unterstützung (API-Limitierung)* |
+| **LsbSports** | *Keine Query-Unterstützung (API-Limitierung)* |
 
 ## Fehlerbehandlung
 

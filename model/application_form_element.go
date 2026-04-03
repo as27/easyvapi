@@ -6,7 +6,8 @@ type ApplicationFormElement struct {
 	// ID is the unique identifier of the form element.
 	ID int `json:"id"`
 	// ApplicationForm is the ID of the form this element belongs to.
-	ApplicationForm int `json:"applicationForm"`
+	// The API may return this as a URL string or plain integer.
+	ApplicationForm urlOrInt `json:"applicationForm"`
 	// Kind classifies the element type (e.g. "text", "select", "checkbox").
 	Kind string `json:"kind"`
 	// Label is the display label for the element.

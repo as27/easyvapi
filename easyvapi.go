@@ -115,6 +115,22 @@ type Client struct {
 	Events *EventService
 	// MemberGroups provides access to the /member-group endpoint for member categories.
 	MemberGroups *MemberGroupService
+	// Organization provides access to the /organization endpoint (singleton).
+	Organization *OrganizationService
+	// FileSystemPaths provides access to the /file-system-path endpoint.
+	FileSystemPaths *FileSystemPathService
+	// Wastebasket provides access to the /wastebasket endpoint for deleted objects.
+	Wastebasket *WastebasketService
+	// ChatSettings provides access to the /chat-settings endpoint (singleton).
+	ChatSettings *ChatSettingsService
+	// Forums provides access to the /forum endpoint.
+	Forums *ForumService
+	// DosbSports provides access to the /dosb-sport endpoint.
+	DosbSports *DosbSportService
+	// LsbSports provides access to the /lsb-sport endpoint.
+	LsbSports *LsbSportService
+	// Apply provides access to the /apply endpoint for membership applications.
+	Apply *ApplyService
 
 	httpClient     *http.Client
 	baseURL        string
@@ -224,6 +240,14 @@ func New(token string, opts ...Option) *Client {
 	c.ChairmanNotes = &ChairmanNoteService{client: c}
 	c.Events = &EventService{client: c}
 	c.MemberGroups = &MemberGroupService{client: c}
+	c.Organization = &OrganizationService{client: c}
+	c.FileSystemPaths = &FileSystemPathService{client: c}
+	c.Wastebasket = &WastebasketService{client: c}
+	c.ChatSettings = &ChatSettingsService{client: c}
+	c.Forums = &ForumService{client: c}
+	c.DosbSports = &DosbSportService{client: c}
+	c.LsbSports = &LsbSportService{client: c}
+	c.Apply = &ApplyService{client: c}
 	return c
 }
 

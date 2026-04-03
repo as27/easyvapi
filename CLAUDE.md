@@ -41,7 +41,7 @@ members, err := client.Members.ListAll(ctx, opts)
 | **HTTP** | 30s timeout, `Accept: application/json` always set, proper URL encoding. |
 | **Errors** | `*APIError{StatusCode, Message, Detail}` (non-2xx), `*RateLimitError{RetryAfter}` (429). Use `errors.As()`. |
 
-## Services (32 total)
+## Services (40 total)
 
 Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Get(ctx, id, query)`, `Create`, `Update`, `Delete`
 
@@ -79,6 +79,14 @@ Each has: `List(ctx, opts) *Iterator[T]`, `ListAll(ctx, opts) ([]T, error)`, `Ge
 | ChairmanNotes | ChairmanNote | DateGte, DateLte | Interne Vorstandsnotizen |
 | Events | Event | DateRange, Calendar, IsPublic | + Copy, GenerateInvoices, InviteGroups, ListParticipations, CreateParticipation, UpdateParticipation, DeleteParticipation |
 | MemberGroups | MemberGroup | Name | **No query parameter support** |
+| Organization | Organization | — | Singleton: Get, Update only |
+| FileSystemPaths | FileSystemPath | Name | **No query parameter support** |
+| Wastebasket | WastebasketItem | Model | List, Restore; **No query parameter support** |
+| ChatSettings | ChatSettings | — | Singleton: Get, Update only |
+| Forums | Forum | Name | **No query parameter support** |
+| DosbSports | DosbSport | Name | **No query parameter support** |
+| LsbSports | LsbSport | Name | **No query parameter support** |
+| Apply | — | — | Submit only (POST /apply) |
 
 ## Code Patterns
 
