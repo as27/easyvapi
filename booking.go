@@ -17,7 +17,11 @@ type BookingService struct {
 
 // defaultBookingQuery requests all fields defined in model.Booking.
 var defaultBookingQuery = NewQuery().
-	Fields("id", "amount", "date", "receiver", "billingId")
+	Fields("id", "amount", "date", "receiver", "billingId",
+		"relatedInvoice", "org", "bankAccount", "billingAccount",
+		"_deleteAfterDate", "_deletedBy", "description", "importDate",
+		"blocked", "paymentDifference", "counterpartIban", "counterpartBic",
+		"twingleDonation", "bookingProject", "sphere")
 
 // BookingListOptions holds all filter and pagination options for Booking list
 // requests.
