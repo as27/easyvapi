@@ -20,8 +20,23 @@ type MemberService struct {
 // ListOptions.Query to request a smaller subset of fields for better performance.
 var defaultMemberQuery = NewQuery().
 	Fields("id", "membershipNumber", "joinDate", "resignationDate",
-		"paymentAmount", "paymentIntervallMonths", "_isBlocked", "_isApplication",
-		"_relatedMember").
+		"resignationNoticeDate", "declarationOfApplication",
+		"_paymentStartDate", "paymentAmount", "paymentIntervallMonths",
+		"useBalanceForMembershipFee", "bulletinBoardNewPostNotification",
+		"integrationDosbSport", "integrationDosbGender",
+		"integrationLsbSport", "integrationLsbGender",
+		"_isApplication", "_relatedMember", "relatedMembers", "org",
+		"_deleteAfterDate", "_deletedBy",
+		"declarationOfResignation", "declarationOfConsent", "sepaMandateFile",
+		"customFields",
+		"_applicationDate", "_applicationWasAcceptedAt",
+		"_isChairman", "_chairmanPermissionGroup", "_profilePicture",
+		"emailOrUserName", "signatureText", "_editableByRelatedMembers",
+		"requirePasswordChange", "_isBlocked", "blockReason",
+		"applicationKind", "wantsToCancelAt", "cancelReason",
+		"showWarningsAndNotesToAdminsInProfile", "applicationForm",
+		"_isMatrixSearchable", "matrixBlockReason", "blockedFromMatrix",
+		"_matrixCommunicationPermission", "useMatrixGroupSettings").
 	Nested("contactDetails", "id", "firstName", "familyName", "salutation",
 		"street", "zip", "city", "country", "privateEmail", "primaryEmail",
 		"privatePhone", "mobilePhone", "dateOfBirth").

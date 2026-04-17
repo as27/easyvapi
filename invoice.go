@@ -17,8 +17,25 @@ type InvoiceService struct {
 
 // defaultInvoiceQuery requests all fields defined in model.Invoice.
 var defaultInvoiceQuery = NewQuery().
-	Fields("id", "invNumber", "date", "receiver", "totalPrice", "kind",
-		"isDraft", "isTemplate")
+	Fields(
+		"id", "relatedBookings", "org", "path", "relatedAddress",
+		"payedFromUser", "approvedFromAdmin", "canceledInvoice", "cancelInvoice",
+		"charges", "bankAccount", "invoiceItems",
+		"_deleteAfterDate", "_deletedBy",
+		"gross", "cancellationDescription", "templateName",
+		"date", "dateItHappend", "dateSent",
+		"invNumber", "receiver", "description",
+		"totalPrice", "tax", "kind", "refNumber", "paymentDifference",
+		"isDraft", "isTemplate",
+		"creationDateForRecurringInvoices", "recurringInvoicesInterval",
+		"paymentInformation", "isRequest", "taxRate", "taxName",
+		"actualCallStateName", "callStateDelayDays",
+		"accnumber", "guid", "selectionAcc", "removeFileOnDelete",
+		"customPaymentMethod", "isReceipt",
+		"_isTaxRatePerInvoiceItem", "_isSubjectToTax",
+		"mode", "offerStatus", "offerValidUntil", "offerNumber",
+		"relatedOffer", "closingDescription", "useAddressBalance",
+	)
 
 // InvoiceListOptions holds all filter and pagination options for Invoice list
 // requests.
