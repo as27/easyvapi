@@ -59,4 +59,6 @@ type BookingCreate struct {
 	Receiver string `json:"receiver,omitempty"`
 	// RelatedInvoice is an optional list of invoice URLs to link to this booking.
 	RelatedInvoice []string `json:"relatedInvoice,omitempty"`
+	// BankAccount is the ID of the bank account this booking belongs to (optional).
+	BankAccount int `json:"bankAccount,omitempty"`
 }
