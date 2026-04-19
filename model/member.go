@@ -110,6 +110,13 @@ func (cd *ContactDetails) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// MemberGroupMembership is the through-model returned by the API for memberGroups.
+// The API returns each entry as {"id": 1, "memberGroup": {...}} rather than a direct MemberGroup.
+type MemberGroupMembership struct {
+	ID          int         `json:"id"`
+	MemberGroup MemberGroup `json:"memberGroup"`
+}
+
 // MemberGroup represents a membership category/group (like "Active Members", "Sponsors", etc).
 // Members can belong to multiple groups through the memberGroups field.
 type MemberGroup struct {
@@ -198,8 +205,8 @@ type Member struct {
 	DeclarationOfConsent string `json:"declarationOfConsent"`
 	// SepaMandateFile is a URL to the SEPA mandate file.
 	SepaMandateFile string `json:"sepaMandateFile"`
-	// MemberGroups is the list of groups this member belongs to.
-	MemberGroups []MemberGroup `json:"memberGroups"`
+	// MemberGroups is the list of group memberships (through-model) for this member.
+	MemberGroups []MemberGroupMembership `json:"memberGroups"`
 	// CustomFields is a list of URL references to the member's custom field values.
 	CustomFields []string `json:"customFields"`
 	// ApplicationDate is the date the membership application was submitted.
@@ -279,7 +286,7 @@ type memberJSON struct {
 	DeclarationOfResignation              string          `json:"declarationOfResignation"`
 	DeclarationOfConsent                  string          `json:"declarationOfConsent"`
 	SepaMandateFile                       string          `json:"sepaMandateFile"`
-	MemberGroups                          []MemberGroup   `json:"memberGroups"`
+	MemberGroups                          []MemberGroupMembership `json:"memberGroups"`
 	CustomFields                          []string        `json:"customFields"`
 	ApplicationDate                       string          `json:"_applicationDate"`
 	ApplicationWasAcceptedAt              string          `json:"_applicationWasAcceptedAt"`
