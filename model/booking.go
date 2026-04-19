@@ -57,4 +57,6 @@ type BookingCreate struct {
 	Date string `json:"date"`
 	// Receiver is an optional counterpart name.
 	Receiver string `json:"receiver,omitempty"`
+	// RelatedInvoice is an optional list of invoice URLs to link to this booking.
+	RelatedInvoice []string `json:"relatedInvoice,omitempty"`
 }
