@@ -120,14 +120,49 @@ type MemberGroupMembership struct {
 // MemberGroup represents a membership category/group (like "Active Members", "Sponsors", etc).
 // Members can belong to multiple groups through the memberGroups field.
 type MemberGroup struct {
-	// ID is the unique identifier for this member group.
-	ID int `json:"id"`
-	// Name is the full name of the member group.
-	Name string `json:"name"`
-	// Short is an abbreviation or short code for the group.
-	Short string `json:"short"`
-	// Description provides additional context about the group.
-	Description string `json:"description"`
+	ID                                    int     `json:"id"`
+	Org                                   string  `json:"org"`
+	Name                                  string  `json:"name"`
+	Color                                 string  `json:"color"`
+	Short                                 string  `json:"short"`
+	NextGroup                             string  `json:"nextGroup"`
+	LinkedItems                           int     `json:"linkedItems"`
+	DeleteAfterDate                       string  `json:"_deleteAfterDate"`
+	DeletedBy                             string  `json:"_deletedBy"`
+	PaymentAmount                         string  `json:"paymentAmount"`
+	AssignmentDeleteAfterBooking          bool    `json:"assignmentDeleteAfterBooking"`
+	UsePaymentFormula                     bool    `json:"usePaymentFormula"`
+	PaymentFormula                        string  `json:"paymentFormula"`
+	PaymentInterval                       int     `json:"paymentInterval"`
+	NameOnInvoice                         string  `json:"nameOnInvoice"`
+	DescriptionOnInvoice                  string  `json:"descriptionOnInvoice"`
+	ShowInApplicationform                 bool    `json:"showInApplicationform"`
+	AgePermission                         int     `json:"agePermission"`
+	KeepMembershipAfterAgeBasedGroupChange bool   `json:"keepMembershipAfterAgeBasedGroupChange"`
+	TaxRate                               string  `json:"taxRate"`
+	CostCentre                            string  `json:"costCentre"`
+	UserShares                            string  `json:"user_shares"`
+	UserBookings                          string  `json:"user_bookings"`
+	UserProtocols                         string  `json:"user_protocols"`
+	UserMembers                           string  `json:"user_members"`
+	UserMembersGroupaccess                string  `json:"user_members_groupaccess"`
+	UserMembershipCte                     string  `json:"user_membershipCte"`
+	UserEdit                              string  `json:"user_edit"`
+	UserBankData                          string  `json:"user_bankData"`
+	UserForum                             string  `json:"user_forum"`
+	UserBoard                             string  `json:"user_board"`
+	UserBoardLinks                        string  `json:"user_boardLinks"`
+	UserAllowICSExport                    string  `json:"user_allowICSExport"`
+	UserInvoiceRequest                    string  `json:"user_invoiceRequest"`
+	UserInventory                         string  `json:"user_inventory"`
+	UserGroupAccount                      string  `json:"userGroupAccount"`
+	BillingAccount                        string  `json:"billingAccount"`
+	OrderSequence                         int     `json:"orderSequence"`
+	IsOnlyVisibleToAdmins                 bool    `json:"isOnlyVisibleToAdmins"`
+	Sphere                                *int    `json:"sphere"`
+	ParticipationsPerWeek                 *int    `json:"participationsPerWeek"`
+	IsMatrixSearchable                    bool    `json:"isMatrixSearchable"`
+	MatrixCommunicationPermission         int     `json:"matrixCommunicationPermission"`
 }
 
 // UnmarshalJSON handles the case where the API returns either a URL string or a
@@ -149,9 +184,42 @@ func (g *MemberGroup) UnmarshalJSON(data []byte) error {
 // MemberGroupCreate contains the fields for creating or updating a member group
 // via POST / PATCH /member-group.
 type MemberGroupCreate struct {
-	Name        string `json:"name"`
-	Short       string `json:"short,omitempty"`
-	Description string `json:"description,omitempty"`
+	Name                                  string `json:"name,omitempty"`
+	Color                                 string `json:"color,omitempty"`
+	Short                                 string `json:"short,omitempty"`
+	NextGroup                             string `json:"nextGroup,omitempty"`
+	PaymentAmount                         string `json:"paymentAmount,omitempty"`
+	AssignmentDeleteAfterBooking          bool   `json:"assignmentDeleteAfterBooking,omitempty"`
+	UsePaymentFormula                     bool   `json:"usePaymentFormula,omitempty"`
+	PaymentFormula                        string `json:"paymentFormula,omitempty"`
+	PaymentInterval                       int    `json:"paymentInterval,omitempty"`
+	NameOnInvoice                         string `json:"nameOnInvoice,omitempty"`
+	DescriptionOnInvoice                  string `json:"descriptionOnInvoice,omitempty"`
+	ShowInApplicationform                 bool   `json:"showInApplicationform,omitempty"`
+	AgePermission                         int    `json:"agePermission,omitempty"`
+	KeepMembershipAfterAgeBasedGroupChange bool  `json:"keepMembershipAfterAgeBasedGroupChange,omitempty"`
+	TaxRate                               string `json:"taxRate,omitempty"`
+	CostCentre                            string `json:"costCentre,omitempty"`
+	UserShares                            string `json:"user_shares,omitempty"`
+	UserBookings                          string `json:"user_bookings,omitempty"`
+	UserProtocols                         string `json:"user_protocols,omitempty"`
+	UserMembers                           string `json:"user_members,omitempty"`
+	UserMembersGroupaccess                string `json:"user_members_groupaccess,omitempty"`
+	UserMembershipCte                     string `json:"user_membershipCte,omitempty"`
+	UserEdit                              string `json:"user_edit,omitempty"`
+	UserBankData                          string `json:"user_bankData,omitempty"`
+	UserForum                             string `json:"user_forum,omitempty"`
+	UserBoard                             string `json:"user_board,omitempty"`
+	UserBoardLinks                        string `json:"user_boardLinks,omitempty"`
+	UserAllowICSExport                    string `json:"user_allowICSExport,omitempty"`
+	UserInvoiceRequest                    string `json:"user_invoiceRequest,omitempty"`
+	UserInventory                         string `json:"user_inventory,omitempty"`
+	UserGroupAccount                      string `json:"userGroupAccount,omitempty"`
+	BillingAccount                        string `json:"billingAccount,omitempty"`
+	OrderSequence                         int    `json:"orderSequence,omitempty"`
+	IsOnlyVisibleToAdmins                 bool   `json:"isOnlyVisibleToAdmins,omitempty"`
+	IsMatrixSearchable                    bool   `json:"isMatrixSearchable,omitempty"`
+	MatrixCommunicationPermission         int    `json:"matrixCommunicationPermission,omitempty"`
 }
 
 // Member represents a member record in easyVerein.
