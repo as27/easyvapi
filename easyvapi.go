@@ -131,6 +131,12 @@ type Client struct {
 	LsbSports *LsbSportService
 	// Apply provides access to the /apply endpoint for membership applications.
 	Apply *ApplyService
+	// TaskGroups provides access to the /task-group endpoint.
+	TaskGroups *TaskGroupService
+	// Tasks provides access to the /task endpoint.
+	Tasks *TaskService
+	// Protocols provides access to the /protocol endpoint.
+	Protocols *ProtocolService
 
 	httpClient     *http.Client
 	baseURL        string
@@ -248,6 +254,9 @@ func New(token string, opts ...Option) *Client {
 	c.DosbSports = &DosbSportService{client: c}
 	c.LsbSports = &LsbSportService{client: c}
 	c.Apply = &ApplyService{client: c}
+	c.TaskGroups = &TaskGroupService{client: c}
+	c.Tasks = &TaskService{client: c}
+	c.Protocols = &ProtocolService{client: c}
 	return c
 }
 
