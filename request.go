@@ -49,7 +49,7 @@ func (c *Client) do(ctx context.Context, method, rawURL string, body any) (*http
 		return nil, err
 	}
 	// If the server signals that the token should be refreshed, do it and retry.
-	if strings.ToLower(resp.Header.Get("tokenRefreshNeeded")) == "true" || resp.Header.Get("tokenRefreshNeeded") == "1" {
+	if (strings.ToLower(resp.Header.Get("tokenRefreshNeeded")) == "true" || resp.Header.Get("tokenRefreshNeeded") == "1") && c.onTokenRefresh != nil {
 		resp.Body.Close()
 		if err := c.refreshToken(ctx); err != nil {
 			return nil, err

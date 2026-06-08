@@ -16,7 +16,7 @@
 // # Features
 //
 // - Automatic pagination with lazy Iterator[T]
-// - Automatic token refresh when signaled by API
+// - Automatic token refresh when signaled by API (requires registered callback)
 // - Rate-limit handling with exponential backoff
 // - Flexible query filtering for field selection
 // - Comprehensive error handling
@@ -45,7 +45,7 @@ const defaultBaseURL = "https://easyverein.com/api/v2.0"
 
 // Client is the main entry point for interacting with the easyVerein API.
 // It provides access to all resource services and manages authentication,
-// rate limiting, and token refresh automatically.
+// rate limiting, and token refresh (if callback is registered) automatically.
 //
 // Create a new Client with [New], which returns a fully initialized client
 // with default configuration (30s timeout, standard base URL). Customize
@@ -187,6 +187,8 @@ func WithDebug(debug bool) Option {
 
 // WithTokenRefreshCallback registers a callback function that is called
 // whenever the API signals a token refresh via the tokenRefreshNeeded header.
+// If this callback is registered, the client automatically handles the token refresh
+// and retries the failed request once. Otherwise, the header is ignored.
 // The callback receives the new token and should persist it securely
 // (e.g., write to a config file or encrypted storage).
 //

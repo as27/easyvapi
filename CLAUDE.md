@@ -37,7 +37,7 @@ members, err := client.Members.ListAll(ctx, opts)
 | **Query** | `NewQuery().Fields("id","name").Nested("contactDetails","email").Exclude("password")` → `{id,name,contactDetails{email},-password}` |
 | **Default Queries** | Each service (e.g., `defaultMemberQuery`) auto-selects model fields. Nil opts → use default. Exception: `member_group` has no query support. |
 | **Rate-Limit** | Auto-throttles if X-RateLimit-Remaining < 5 (sleeps 10s). HTTP 429 → `*RateLimitError{RetryAfter time.Duration}` |
-| **Token Refresh** | Auto-refreshes on `tokenRefreshNeeded` header, retries once. Callback via `WithTokenRefreshCallback()`. |
+| **Token Refresh** | Auto-refreshes on `tokenRefreshNeeded` header (only if callback registered), retries once. Callback via `WithTokenRefreshCallback()`. |
 | **HTTP** | 30s timeout, `Accept: application/json` always set, proper URL encoding. |
 | **Errors** | `*APIError{StatusCode, Message, Detail}` (non-2xx), `*RateLimitError{RetryAfter}` (429). Use `errors.As()`. |
 

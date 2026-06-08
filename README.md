@@ -6,7 +6,7 @@ Ein moderner, typsicherer Go Client für die [easyVerein](https://www.easyverein
 
 - ✅ **Vollständige CRUD-Operationen** für alle Ressourcen (Members, Contacts, Contact Groups, Contact Logs, Invoices, Invoice Items, Bookings, Booking Projects, Billing Accounts, Bank Accounts, Accounting Plans, Custom Tax Rates, Custom Fields, Custom Field Collections, Custom Filters, Document Templates, Chairman Levels, Chairman Notes, Former Member Data, Events, Member Groups, Locations, Calendars, Announcements, Anniversary Mailings, Application Forms, Application Form Elements, Inventory Objects, Inventory Object Groups, Lendings, Article Objects, Organization, File System Paths, Wastebasket, Chat Settings, Forums, DOSB Sports, LSB Sports, Tasks, Task Groups, Protocols)
 - ✅ **Lazy Pagination** mit `Iterator[T]` – nur die benötigten Felder abrufen, Seiten bei Bedarf laden
-- ✅ **Automatisches Token-Refresh** – Token wird automatisch erneuert, wenn die API es signalisiert
+- ✅ **Automatisches Token-Refresh** – Token wird automatisch erneuert, wenn die API es signalisiert (erfordert einen registrierten Callback)
 - ✅ **Intelligentes Rate-Limit-Handling** – automatisches Drosseln bei niedriger Rate-Limit-Verbrauch
 - ✅ **Flexible Query-Filter** – einfache Builder-API zum Auswählen von Feldern und verschachtelten Objekten
 - ✅ **Standard-Abfragen** – jeder Endpoint hat sinnvolle Defaults, die nur relevante Felder abrufen
@@ -203,6 +203,8 @@ if err != nil {
 ```
 
 ### 10. Token-Refresh-Callback
+
+Das automatische Token-Refresh wird nur ausgeführt, wenn dieser Callback registriert ist. Falls kein Callback registriert ist, wird der `tokenRefreshNeeded`-Header ignoriert und die Response normal zurückgegeben.
 
 ```go
 // Token nach Refresh speichern
