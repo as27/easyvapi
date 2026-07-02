@@ -89,6 +89,18 @@ type ContactDetails struct {
 	MobilePhone string `json:"mobilePhone"`
 	// DateOfBirth is the person's date of birth in YYYY-MM-DD format.
 	DateOfBirth string `json:"dateOfBirth"`
+	// IBAN is the International Bank Account Number.
+	IBAN string `json:"iban"`
+	// BIC is the Bank Identifier Code (SWIFT code).
+	BIC string `json:"bic"`
+	// BankAccountOwner is the name of the bank account owner.
+	BankAccountOwner string `json:"bankAccountOwner"`
+	// SepaMandate is a URL reference or identifier for the SEPA mandate.
+	SepaMandate string `json:"sepaMandate"`
+	// SepaDate is the signature date of the SEPA mandate.
+	SepaDate string `json:"sepaDate"`
+	// MethodOfPayment is the method of payment identifier.
+	MethodOfPayment *int `json:"methodOfPayment"`
 }
 
 // UnmarshalJSON handles the case where the API returns either a URL string or a

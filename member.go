@@ -39,7 +39,8 @@ var defaultMemberQuery = NewQuery().
 		"_matrixCommunicationPermission", "useMatrixGroupSettings").
 	Nested("contactDetails", "id", "firstName", "familyName", "salutation",
 		"street", "zip", "city", "country", "privateEmail", "primaryEmail",
-		"privatePhone", "mobilePhone", "dateOfBirth").
+		"privatePhone", "mobilePhone", "dateOfBirth", "iban", "bic",
+		"bankAccountOwner", "sepaMandate", "sepaDate", "methodOfPayment").
 	Nested("memberGroups", "id", "memberGroup{id,name,short}")
 
 // MemberListOptions holds all filter and pagination options for Member list

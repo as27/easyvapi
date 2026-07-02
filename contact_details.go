@@ -19,7 +19,8 @@ type ContactDetailsService struct {
 var defaultContactDetailsQuery = NewQuery().
 	Fields("id", "firstName", "familyName", "salutation", "street", "zip",
 		"city", "country", "privateEmail", "primaryEmail", "privatePhone",
-		"mobilePhone", "dateOfBirth")
+		"mobilePhone", "dateOfBirth", "iban", "bic", "bankAccountOwner",
+		"sepaMandate", "sepaDate", "methodOfPayment")
 
 // ContactDetailsListOptions holds all filter and pagination options for
 // ContactDetails list requests.
